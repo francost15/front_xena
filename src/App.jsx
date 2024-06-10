@@ -16,10 +16,14 @@ function App() {
                         {token && (
                             <>
                                 <li>
-                                    <Link to="/">Productos</Link>
+                                    <Link to="/">
+                                    <div className="flex justify-center mb-8">
+                    <img src="/src/assets/xenavar.png" alt="Empresa Logo" className="h-24" />
+                </div>
+                                    </Link>
                                 </li>
                                 <li>
-                                    <Link to="/create">Crear Producto</Link>
+                                    <Link to="/create" className='text-white text-2xl'>Crear Producto</Link>
                                 </li>
                             </>
                         )}
