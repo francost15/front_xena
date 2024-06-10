@@ -6,15 +6,20 @@ const Login = () => {
     const [email, setEmail] = useState('');
     const [password, setPassword] = useState('');
     const [error, setError] = useState('');
+    const [loading, setLoading] = useState(false);
     const navigate = useNavigate();
 
     const handleSubmit = async (e) => {
         e.preventDefault();
+        setLoading(true);
+        setError('');
         try {
             const response = await axios.post(`${import.meta.env.VITE_BACK_URL}/api/login`, { email, password });
             localStorage.setItem('token', response.data.data.token);
+            setLoading(false);
             navigate('/');
         } catch (error) {
+            setLoading(false);
             setError('Credenciales inválidas. Por favor, inténtalo de nuevo.');
         }
     };
@@ -33,7 +38,9 @@ const Login = () => {
                         <label htmlFor="password" className="block text-white text-lg mb-2 ">Contraseña:</label>
                         <input type="password" id="password" className="form-input rounded-xl p-3" value={password} onChange={(e) => setPassword(e.target.value)} />
                     </div>
-                    <button type="submit" className="bg-red-700 text-white py-2 px-6 rounded hover:bg-red-900">Iniciar Sesión</button>
+                    <button type="submit" className="bg-red-700 text-white py-2 px-6 rounded hover:bg-red-900" disabled={loading}>
+                        {loading ? 'Cargando...' : 'Iniciar Sesión'}
+                    </button>
                 </form>
             </div>
         </div>

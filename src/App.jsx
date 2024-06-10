@@ -4,7 +4,7 @@ import CreateProduct from './components/CreateProduct';
 import EditProduct from './components/EditProduct';
 import Login from './components/Login';
 import Register from './components/Register';
-
+import logoxena from "./assets/xenavar.png"
 function App() {
     const token = localStorage.getItem('token');
 
@@ -18,7 +18,7 @@ function App() {
                                 <li>
                                     <Link to="/">
                                     <div className="flex justify-center mb-8">
-                    <img src="/src/assets/xenavar.png" alt="Empresa Logo" className="h-24" />
+                    <img src={logoxena} alt="Empresa Logo" className="h-24" />
                 </div>
                                     </Link>
                                 </li>
@@ -30,10 +30,10 @@ function App() {
                         {!token && (
                             <>
                                 <li>
-                                    <Link to="/login">Iniciar Sesión</Link>
+                                    <Link to="/login"  className='text-white' >Iniciar Sesión</Link>
                                 </li>
                                 <li>
-                                    <Link to="/register">Registrarse</Link>
+                                    <Link to="/register" className='text-white'>Registrarse</Link>
                                 </li>
                             </>
                         )}
