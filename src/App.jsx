@@ -5,10 +5,12 @@ import EditProduct from './components/EditProduct';
 import Login from './components/Login';
 import Register from './components/Register';
 import logoxena from "./assets/xenavar.png"
+import { AuthProvider } from './components/AuthContext';
 function App() {
     const token = localStorage.getItem('token');
 
     return (
+        <AuthProvider>
         <BrowserRouter>
             <div>
                 <nav>
@@ -46,18 +48,19 @@ function App() {
                     <Route
                         path="/"
                         element={token ? <ProductList /> : <Navigate to="/login" />}
-                    />
+                        />
                     <Route
                         path="/create"
                         element={token ? <CreateProduct /> : <Navigate to="/login" />}
-                    />
+                        />
                     <Route
                         path="/edit/:id"
                         element={token ? <EditProduct /> : <Navigate to="/login" />}
-                    />
+                        />
                 </Routes>
             </div>
         </BrowserRouter>
+    </AuthProvider>
     );
 }
 
